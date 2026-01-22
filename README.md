@@ -1,5 +1,6 @@
 # Packer Azure Ubuntu Custom Image
 
+> Production-ready Azure Ubuntu golden image built using HashiCorp Packer
 This Packer configuration builds a custom Ubuntu 22.04 LTS image on Azure with Nginx and a Starbucks clone application pre-installed.
 
 ## Overview
@@ -111,7 +112,9 @@ A managed image named in format: `ubuntu-nginx-starbucks-{version}` (e.g., `ubun
 
 ## Usage
 
-### 1. Create terraform.tfvars
+### 1. Create terraform.tfvars / custom .pkrvars file
+
+Create packer.auto.pkrvars.hcl (or custom .pkrvars file)
 
 Create a `.tfvars` file with your Azure credentials:
 
@@ -226,10 +229,6 @@ After successful build, use the managed image to:
 3. Deploy to App Service or Container Instances
 4. Use as base for further customization
 
-## Security Best Practices
-- Never commit secrets to GitHub
-- Use environment variables or Azure Key Vault
-- Add *.pkrvars.hcl to .gitignore
 
 ## Future Enhancements
 - CI/CD pipeline using GitHub Actions
