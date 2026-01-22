@@ -1,0 +1,21 @@
+# Packer Auto Variables (Contains Sensitive Credentials)
+variables.auto.pkrvars.hcl
+*.auto.pkrvars.hcl
+
+# Packer Cache and Artifacts
+crash.log
+crash.*.log
+.DS_Store
+packer_cache/
+
+# Sensitive files
+*.tfvars
+*.tfvars.json
+!example.tfvars
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
