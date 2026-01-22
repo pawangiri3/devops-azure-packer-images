@@ -2,6 +2,23 @@
 
 This Packer configuration builds a custom Ubuntu 22.04 LTS image on Azure with Nginx and a Starbucks clone application pre-installed.
 
+## Overview
+This repository contains Packer templates to build **custom Azure VM images**
+with pre-installed software like Nginx, Java, and application dependencies.
+
+## Image Build Flow
+1. Packer authenticates to Azure using Service Principal
+2. Base image: Ubuntu 22.04
+3. Shell provisioners install required packages
+4. Azure Managed Image is created
+
+## Why Packer?
+- Immutable infrastructure
+- Faster VM provisioning
+- Standardized golden images
+- Reduced configuration drift
+
+
 ## Prerequisites
 
 - Packer >= 1.9.0
@@ -19,6 +36,14 @@ packer/
 ├── versions.pkr.hcl       # Version requirements
 └── README.md              # This file
 ```
+## Variables
+| Variable | Description |
+|--------|------------|
+| client_id | Azure Service Principal ID |
+| client_secret | Azure SP Secret |
+| subscription_id | Azure Subscription |
+| tenant_id | Azure Tenant |
+
 
 ## Files Overview
 
@@ -200,6 +225,17 @@ After successful build, use the managed image to:
 2. Use in Infrastructure as Code (Terraform/ARM templates)
 3. Deploy to App Service or Container Instances
 4. Use as base for further customization
+
+## Security Best Practices
+- Never commit secrets to GitHub
+- Use environment variables or Azure Key Vault
+- Add *.pkrvars.hcl to .gitignore
+
+## Future Enhancements
+- CI/CD pipeline using GitHub Actions
+- Support for multiple OS images
+- Image hardening scripts
+- Multi-region image replication
 
 ## License
 
